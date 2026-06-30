@@ -42,13 +42,13 @@ function Home() {
   const [loading, setLoading] = useState(true);
 
   //for category products
-  const mobileProducts = products.filter((item) => item.category === "Mobile");
+  const mobileProducts = products.filter((item) => item.category === "mobile");
 
   const tvProducts = products.filter((item) => item.category === "TV");
 
-  const laptopProducts = products.filter((item) => item.category === "Laptop");
+  const laptopProducts = products.filter((item) => item.category === "laptop");
 
-  const watchProducts = products.filter((item) => item.category === "watch");
+  const watchProducts = products.filter((item) => item.category === "watches");
 
   // fetch products
   const getProducts = async () => {
