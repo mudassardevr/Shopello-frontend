@@ -1,0 +1,36 @@
+<svg width="680" height="320" viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>Shopello Primary Logo</title>
+  <desc>Shopello e-commerce primary logo in ocean blue and navy</desc>
+
+  <!-- Background card -->
+  <rect x="0" y="0" width="680" height="320" rx="20" fill="#EBF4FD"/>
+  <ellipse cx="620" cy="60" rx="80" ry="42" fill="#B5D4F4" opacity="0.35" transform="rotate(-20 620 60)"/>
+  <ellipse cx="70" cy="290" rx="65" ry="34" fill="#B5D4F4" opacity="0.3" transform="rotate(15 70 290)"/>
+  <path d="M0 260 Q110 235 210 252 Q310 268 400 245 Q490 222 580 244 Q640 256 680 240 L680 320 L0 320 Z" fill="#B5D4F4" opacity="0.2"/>
+
+  <!-- Bag body -->
+  <rect x="120" y="100" width="90" height="100" rx="14" fill="#185FA5"/>
+  <!-- Handle -->
+  <path d="M138 100 Q138 76 165 76 Q192 76 192 100" fill="none" stroke="#185FA5" stroke-width="7" stroke-linecap="round"/>
+  <!-- Wave stripe -->
+  <rect x="120" y="148" width="90" height="13" fill="#378ADD" opacity="0.9"/>
+  <!-- S letter -->
+  <text x="165" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="32" font-weight="700" fill="#fff">S</text>
+  <!-- Droplet accent -->
+  <ellipse cx="202" cy="107" rx="13" ry="8" fill="#85B7EB" transform="rotate(-40 202 107)"/>
+  <circle cx="210" cy="118" r="4.5" fill="#378ADD" opacity="0.7"/>
+
+  <!-- Wordmark -->
+  <text x="234" y="162" text-anchor="start" font-family="Georgia, serif" font-size="64" font-weight="700" fill="#0C447C" letter-spacing="-1.5">Shopello</text>
+
+  <!-- Tagline -->
+  <text x="234" y="190" text-anchor="start" font-family="Arial, sans-serif" font-size="14" letter-spacing="5" fill="#378ADD">SHOP · TRUST · EXPLORE</text>
+
+  <!-- Divider -->
+  <line x1="234" y1="205" x2="648" y2="205" stroke="#85B7EB" stroke-width="1"/>
+  <circle cx="234" cy="205" r="4" fill="#185FA5"/>
+  <circle cx="648" cy="205" r="4" fill="#378ADD"/>
+
+  <!-- Sub tagline -->
+  <text x="441" y="228" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="#5F5E5A" font-style="italic">Your ocean of great deals.</text>
+</svg>

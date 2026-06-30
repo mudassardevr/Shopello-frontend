@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <title>Shopello App Icon</title>
+  <rect width="512" height="512" rx="100" fill="#185FA5"/>
+  <path d="M160 256 Q160 176 256 176 Q352 176 352 256" fill="none" stroke="#185FA5" stroke-width="40" stroke-linecap="round"/>
+  <rect x="140" y="256" width="232" height="196" rx="24" fill="#185FA5"/>
+  <rect x="140" y="316" width="232" height="36" fill="#378ADD"/>
+  <text x="256" y="308" text-anchor="middle" font-family="Georgia, serif" font-size="80" font-weight="700" fill="#fff">S</text>
+  <ellipse cx="368" cy="272" rx="34" ry="20" fill="#85B7EB" transform="rotate(-40 368 272)"/>
+</svg>

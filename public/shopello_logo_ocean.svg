@@ -1,0 +1,97 @@
+<svg width="680" viewBox="0 0 680 780" xmlns="http://www.w3.org/2000/svg">
+  <title>Shopello Ocean Blue Logo</title>
+  <desc>Shopello e-commerce logo in ocean blue and navy premium style</desc>
+
+  <!-- MAIN LOGO CARD -->
+  <rect x="30" y="20" width="620" height="280" rx="16" fill="#EBF4FD" stroke="#85B7EB" stroke-width="1"/>
+  <ellipse cx="600" cy="55" rx="70" ry="35" fill="#B5D4F4" opacity="0.35" transform="rotate(-20 600 55)"/>
+  <ellipse cx="80" cy="270" rx="55" ry="28" fill="#B5D4F4" opacity="0.3" transform="rotate(15 80 270)"/>
+  <path d="M30 240 Q120 220 200 235 Q280 250 360 230 Q440 210 530 228 Q600 240 650 225 L650 280 L30 280 Z" fill="#B5D4F4" opacity="0.18"/>
+
+  <!-- Bag body -->
+  <rect x="215" y="105" width="66" height="72" rx="11" fill="#185FA5"/>
+  <path d="M229 105 Q229 87 248 87 Q267 87 267 105" fill="none" stroke="#185FA5" stroke-width="5" stroke-linecap="round"/>
+  <rect x="215" y="138" width="66" height="9" fill="#378ADD" opacity="0.85"/>
+  <text x="248" y="131" text-anchor="middle" font-family="Georgia, serif" font-size="23" font-weight="700" fill="#fff">S</text>
+  <ellipse cx="274" cy="109" rx="9" ry="5.5" fill="#85B7EB" transform="rotate(-40 274 109)"/>
+  <circle cx="280" cy="116" r="3" fill="#378ADD" opacity="0.7"/>
+
+  <!-- Wordmark -->
+  <text x="296" y="150" text-anchor="start" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#0C447C" letter-spacing="-1">Shopello</text>
+  <text x="296" y="171" text-anchor="start" font-family="Arial, sans-serif" font-size="12" letter-spacing="4" fill="#378ADD">SHOP · TRUST · EXPLORE</text>
+  <line x1="296" y1="183" x2="598" y2="183" stroke="#85B7EB" stroke-width="0.75"/>
+  <circle cx="296" cy="183" r="3" fill="#185FA5"/>
+  <circle cx="598" cy="183" r="3" fill="#378ADD"/>
+  <text x="447" y="201" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#5F5E5A" font-style="italic">Your ocean of great deals.</text>
+  <text x="340" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" letter-spacing="2" fill="#888780">PRIMARY LOGO</text>
+
+  <!-- COLOR PALETTE -->
+  <rect x="30" y="320" width="620" height="70" rx="12" fill="#fff" stroke="#D3D1C7" stroke-width="0.5"/>
+  <text x="55" y="342" font-family="Arial,sans-serif" font-size="12" fill="#888780">Brand palette</text>
+  <rect x="55" y="350" width="36" height="20" rx="4" fill="#042C53"/>
+  <text x="73" y="386" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" fill="#888780">Navy</text>
+  <rect x="105" y="350" width="36" height="20" rx="4" fill="#0C447C"/>
+  <text x="123" y="386" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" fill="#888780">Deep</text>
+  <rect x="155" y="350" width="36" height="20" rx="4" fill="#185FA5"/>
+  <text x="173" y="386" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" fill="#888780">Ocean</text>
+  <rect x="205" y="350" width="36" height="20" rx="4" fill="#378ADD"/>
+  <text x="223" y="386" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" fill="#888780">Sky</text>
+  <rect x="255" y="350" width="36" height="20" rx="4" fill="#85B7EB"/>
+  <text x="273" y="386" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" fill="#888780">Mist</text>
+  <rect x="305" y="350" width="36" height="20" rx="4" fill="#B5D4F4"/>
+  <text x="323" y="386" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" fill="#888780">Foam</text>
+  <rect x="355" y="350" width="36" height="20" rx="4" fill="#EBF4FD" stroke="#D3D1C7" stroke-width="0.5"/>
+  <text x="373" y="386" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" fill="#888780">Pearl</text>
+
+  <!-- DARK VARIANT -->
+  <rect x="30" y="408" width="300" height="150" rx="12" fill="#042C53"/>
+  <text x="180" y="432" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" letter-spacing="2" fill="#85B7EB" opacity="0.7">DARK VARIANT</text>
+  <rect x="80" y="445" width="40" height="46" rx="7" fill="#378ADD"/>
+  <path d="M90 445 Q90 434 100 434 Q110 434 110 445" fill="none" stroke="#378ADD" stroke-width="3.5" stroke-linecap="round"/>
+  <rect x="80" y="462" width="40" height="5" fill="#85B7EB" opacity="0.9"/>
+  <text x="100" y="459" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#fff">S</text>
+  <ellipse cx="114" cy="447" rx="7" ry="4" fill="#B5D4F4" transform="rotate(-40 114 447)"/>
+  <text x="130" y="468" text-anchor="start" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#EBF4FD" letter-spacing="-0.5">Shopello</text>
+  <text x="130" y="484" text-anchor="start" font-family="Arial,sans-serif" font-size="9" letter-spacing="3" fill="#85B7EB">SHOP · TRUST · EXPLORE</text>
+
+  <!-- MINIMAL VARIANT -->
+  <rect x="350" y="408" width="300" height="150" rx="12" fill="#fff" stroke="#D3D1C7" stroke-width="0.5"/>
+  <text x="500" y="432" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" letter-spacing="2" fill="#888780">MINIMAL VARIANT</text>
+  <rect x="400" y="445" width="40" height="46" rx="7" fill="none" stroke="#185FA5" stroke-width="2"/>
+  <path d="M410 445 Q410 434 420 434 Q430 434 430 445" fill="none" stroke="#185FA5" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="400" y1="462" x2="440" y2="462" stroke="#378ADD" stroke-width="1.5"/>
+  <text x="420" y="459" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#185FA5">S</text>
+  <text x="452" y="468" text-anchor="start" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#0C447C" letter-spacing="-0.5">Shopello</text>
+  <text x="452" y="484" text-anchor="start" font-family="Arial,sans-serif" font-size="9" letter-spacing="3" fill="#378ADD">SHOP · TRUST · EXPLORE</text>
+
+  <!-- ICON SIZES -->
+  <rect x="30" y="580" width="620" height="170" rx="12" fill="#fff" stroke="#D3D1C7" stroke-width="0.5"/>
+  <text x="340" y="606" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" letter-spacing="2" fill="#888780">ICON SIZES — MOBILE &amp; FAVICON READY</text>
+  <rect x="65" y="622" width="80" height="80" rx="18" fill="#185FA5"/>
+  <path d="M83 622 Q83 608 105 608 Q127 608 127 622" fill="none" stroke="#185FA5" stroke-width="6" stroke-linecap="round"/>
+  <rect x="65" y="648" width="80" height="10" fill="#378ADD" opacity="0.9"/>
+  <text x="105" y="644" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#fff">S</text>
+  <ellipse cx="139" cy="625" rx="11" ry="6" fill="#85B7EB" transform="rotate(-40 139 625)"/>
+  <text x="105" y="720" text-anchor="middle" font-size="10" font-family="Arial,sans-serif" fill="#888780">App icon</text>
+  <rect x="215" y="636" width="56" height="56" rx="12" fill="#185FA5"/>
+  <path d="M227 636 Q227 626 243 626 Q259 626 259 636" fill="none" stroke="#185FA5" stroke-width="4.5" stroke-linecap="round"/>
+  <rect x="215" y="653" width="56" height="7" fill="#378ADD" opacity="0.9"/>
+  <text x="243" y="650" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#fff">S</text>
+  <text x="243" y="710" text-anchor="middle" font-size="10" font-family="Arial,sans-serif" fill="#888780">48px</text>
+  <rect x="322" y="645" width="40" height="40" rx="8" fill="#185FA5"/>
+  <path d="M330 645 Q330 637 342 637 Q354 637 354 645" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round"/>
+  <rect x="322" y="657" width="40" height="5" fill="#378ADD" opacity="0.9"/>
+  <text x="342" y="653" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#fff">S</text>
+  <text x="342" y="710" text-anchor="middle" font-size="10" font-family="Arial,sans-serif" fill="#888780">32px</text>
+  <rect x="410" y="652" width="28" height="28" rx="6" fill="#185FA5"/>
+  <line x1="410" y1="661" x2="438" y2="661" stroke="#378ADD" stroke-width="3.5"/>
+  <text x="424" y="670" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="700" fill="#fff">S</text>
+  <text x="424" y="710" text-anchor="middle" font-size="10" font-family="Arial,sans-serif" fill="#888780">Favicon</text>
+  <rect x="462" y="628" width="168" height="68" rx="8" fill="#EBF4FD" stroke="#85B7EB" stroke-width="0.5"/>
+  <rect x="474" y="648" width="24" height="28" rx="5" fill="#185FA5"/>
+  <line x1="474" y1="659" x2="498" y2="659" stroke="#378ADD" stroke-width="2.5"/>
+  <text x="486" y="656" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#fff">S</text>
+  <text x="506" y="661" text-anchor="start" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#0C447C">Shopello</text>
+  <text x="506" y="674" text-anchor="start" font-family="Arial,sans-serif" font-size="7" letter-spacing="2" fill="#378ADD">SHOP · TRUST</text>
+  <text x="546" y="710" text-anchor="middle" font-size="10" font-family="Arial,sans-serif" fill="#888780">Horizontal</text>
+</svg>

@@ -1,0 +1,818 @@
+import { useEffect, useState } from "react";
+
+import API from "../services/api";
+
+import ProductCard from "../components/ProductCard";
+
+const Home = () => {
+
+  const [products, setProducts] = useState([]);
+
+  // fetch products
+  const getProducts = async () => {
+
+    try {
+
+      const response = await API.get("/products");
+
+      setProducts(response.data.products);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  useEffect(() => {
+
+    getProducts();
+
+  }, []);
+
+  return (
+
+    <div className="p-6">
+
+      <h1 className="text-3xl font-bold mb-6">
+        Latest Products
+      </h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+        {products.map((product) => (
+
+          <ProductCard
+            key={product._id}
+            product={product}
+          />
+
+        ))}
+
+      </div>
+
+    </div>
+
+  );
+};
+
+export default Home;
+
+
+=====================login form==============================
+import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import API from "../services/api";
+
+const Login = () => {
+
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+
+  };
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+      const response = await API.post(
+        "/auth/login",
+        formData
+      );
+
+      // save token
+      localStorage.setItem(
+        "token",
+        response.data.token
+      );
+
+      navigate("/");
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  return (
+
+    <div className="flex justify-center mt-20">
+
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md border p-6 rounded-xl"
+      >
+
+        <h1 className="text-3xl font-bold mb-6">
+          Login
+        </h1>
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          className="w-full border p-3 mb-4 rounded-lg"
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          className="w-full border p-3 mb-4 rounded-lg"
+        />
+
+        <button
+          className="w-full bg-black text-white py-3 rounded-lg"
+        >
+          Login
+        </button>
+
+      </form>
+
+    </div>
+
+  );
+};
+
+export default Login;
+
+==================productDetails=====================
+// add to cart
+const addToCart = async () => {
+
+  try {
+
+    const token =
+      localStorage.getItem("token");
+
+    if (!token) {
+      return alert("Please login first");
+    }
+
+    await API.post(
+
+      "/cart/add",
+
+      {
+        productId: product._id,
+        quantity: 1
+      },
+
+      {
+        headers: {
+          "auth-token": token
+        }
+      }
+
+    );
+
+    alert("Product added to cart");
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+
+};
+
+
+========================cart.jsx============================
+import { useEffect, useState } from "react";
+
+import API from "../services/api";
+
+const Cart = () => {
+
+  const [cartItems, setCartItems] = useState([]);
+
+  // fetch cart items
+  const getCartItems = async () => {
+
+    try {
+
+      const token =
+        localStorage.getItem("token");
+
+      const response = await API.get(
+        "/cart",
+        {
+          headers: {
+            "auth-token": token
+          }
+        }
+      );
+
+      setCartItems(response.data.cartItems);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  useEffect(() => {
+
+    getCartItems();
+
+  }, []);
+
+  // total price
+  const totalPrice = cartItems.reduce(
+
+    (total, item) =>
+
+      total +
+      item.product.price * item.quantity,
+
+    0
+
+  );
+
+  return (
+
+    <div className="p-6">
+
+      <h1 className="text-3xl font-bold mb-6">
+        My Cart
+      </h1>
+
+      {
+        cartItems.length === 0
+        ? (
+          <h2>Your cart is empty</h2>
+        )
+        : (
+          <div className="space-y-4">
+
+            {cartItems.map((item) => (
+
+              <div
+                key={item._id}
+                className="flex items-center gap-4 border p-4 rounded-xl"
+              >
+
+                <img
+                  src={item.product.image}
+                  alt={item.product.title}
+                  className="w-24 h-24 object-cover rounded-lg"
+                />
+
+                <div className="flex-1">
+
+                  <h2 className="text-xl font-semibold">
+                    {item.product.title}
+                  </h2>
+
+                  <p>
+                    ₹ {item.product.price}
+                  </p>
+
+                  <p>
+                    Quantity: {item.quantity}
+                  </p>
+
+                </div>
+
+              </div>
+
+            ))}
+
+            {/* total */}
+            <div className="mt-8">
+
+              <h2 className="text-2xl font-bold">
+
+                Total: ₹ {totalPrice}
+
+              </h2>
+
+            </div>
+
+          </div>
+        )
+      }
+
+    </div>
+  );
+};
+
+export default Cart;
+
+======================================register.jsx=======================
+
+import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import API from "../services/api";
+
+const Register = () => {
+
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+
+  };
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+      const response = await API.post(
+        "/auth/register",
+        formData
+      );
+
+      // save token
+      localStorage.setItem(
+        "token",
+        response.data.token
+      );
+
+      alert("Registration successful");
+
+      navigate("/");
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  return (
+
+    <div className="flex justify-center mt-20">
+
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md border p-6 rounded-xl"
+      >
+
+        <h1 className="text-3xl font-bold mb-6">
+          Register
+        </h1>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          onChange={handleChange}
+          className="w-full border p-3 mb-4 rounded-lg"
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          className="w-full border p-3 mb-4 rounded-lg"
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          className="w-full border p-3 mb-4 rounded-lg"
+        />
+
+        <button
+          className="w-full bg-black text-white py-3 rounded-lg"
+        >
+          Register
+        </button>
+
+      </form>
+
+    </div>
+  );
+};
+
+export default Register;
+
+
+---------------------------------navbar ui----------------------------
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+function Navbar() {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+
+    navigate("/login");
+  };
+
+  return (
+    <>
+      <nav className="flex items-center justify-between px-6 py-4 shadow-md">
+        <Link to="/" className="text-2xl font-bold">
+          E-Shop
+        </Link>
+
+        <div className="flex gap-4">
+          <Link to="/">Home</Link>
+
+          <Link to="/cart">Cart</Link>
+
+          <Link to="/orders">Orders</Link>
+
+          {token ? (
+          <button onClick={logOut}>Logout</button>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+
+            <Link to="/register">Register</Link>
+          </>
+        )}
+         
+        </div>
+        
+      </nav>
+    </>
+  );
+}
+
+export default Navbar;
+
+
+2-------navbar---------------------------------------
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
+import { FiChevronDown } from "react-icons/fi";
+import { FaRegUser } from "react-icons/fa";
+import { IoBagOutline } from "react-icons/io5";
+import { FaRegHeart } from "react-icons/fa";
+
+const menuItems = [
+  { icons: <FaRegUser />, title: 'My profile' },
+  { icons: <IoBagOutline />, title: 'Orders' , path : '/orders'},
+  { icons: <FaRegHeart />, title: 'Wishliste' },
+  { icons: <FiShoppingCart />, title: 'Cart', path : '/cart'},
+];
+
+function Navbar() {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+
+    navigate("/login");
+  };
+
+  return (
+    <>
+      {/* <nav className="flex items-center justify-between px-6 py-4 shadow-md">
+        <Link to="/" className="text-2xl font-bold">
+          E-Shop
+        </Link>
+
+        <div className="flex gap-4">
+          <Link to="/">Home</Link>
+
+          <Link to="/cart">Cart</Link>
+
+          <Link to="/orders">Orders</Link>
+
+          {token ? (
+          <button onClick={logOut}>Logout</button>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+
+            <Link to="/register">Register</Link>
+          </>
+        )}
+         
+        </div>
+        bg-linear-to-b from-[#0A599F] via-[#053066] to-[#00082E]
+      </nav> */}
+
+      <header>
+        <nav>
+          {/* LOGO */}
+          <div className="bg-linear-to-b from-[#0A599F] via-[#053066] to-[#00082E] p-1">
+            <img
+              className="h-12.5 w-13.75 object-cover"
+              src="/shop-logo.png"
+              alt="Logo"
+            />
+          </div>
+
+          <div className="flex items-center justify-between">
+            {/* search */}
+            <div className="relative p-2 flex-1">
+              <FiSearch className="h-6.25 w-6.25 absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" />
+
+              <input
+                type="text"
+                placeholder="Search Product...."
+                className=" w-full pl-12 pr-4 py-3 rounded-2xl bg-white border border-blue-400 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* ACCOUNT AND CART */}
+            <div className="p-2">
+              <div className="flex items-center gap-1 p-2 group relative">
+                <CgProfile className="h-7.5 w-7 " />
+
+                <button className="flex-icenter font-serif hover:cursor-pointer">
+                  Login
+                  <FiChevronDown className="transition-transform duration-300 group-hover:rotate-180" />
+                </button>
+
+                {/* DROPDOWN */}
+                <div className=" absolute right-0 top-full mt-2 w-72 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+
+                  {/* Header */}
+                  <div className="flex items-center justify-between p-4 border-b">
+                    <span className="hover:cursor-pointer">New Customer?</span>
+                    <button className="text-blue-600 font-semibold hover:cursor-pointer">
+                      Sign Up
+                    </button>
+                  </div>
+
+                  {/* Menu Items */}
+                  <ul className="py-2">
+                    {menuItems.map((item) => (
+                      <Link key={item.title} to={item.path}>
+                     
+                      <li
+                        key={item.title}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                      >
+                        {item.icons}
+                        {item.title}
+                      </li>
+                       </Link>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </nav>
+      </header>
+    </>
+  );
+}
+
+export default Navbar;
+------------------------------------searchResult.jsx-----
+import React, { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
+
+import API from "../services/api";
+import ProductCard from "../components/ProductCard";
+import SkeletonLoading from "../components/SkeletonLoading";
+
+function SearchResults() {
+  const location = useLocation();
+
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const query = new URLSearchParams(location.search).get("q");
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        setLoading(true);
+
+        const response = await API.get("/product");
+
+        const filteredProducts = response.data.product.filter((product) =>
+          product.name.toLowerCase().includes(query.toLowerCase())
+        );
+
+        setProducts(filteredProducts);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProducts();
+  }, [query]);
+
+  return (
+    <div className="max-w-center mx-auto p-6 pt-30">
+      <h1 className="text-3xl font-bold mb-6">
+        Search Results for "{query}"
+      </h1>
+
+      {loading ? (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <SkeletonLoading key={index} />
+          ))}
+        </div>
+      ) : products.length === 0 ? (
+        <div className="text-center py-20">
+          <h2 className="text-xl text-gray-500">
+            No products found
+          </h2>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {products.map((product) => (
+            <Link
+              key={product._id}
+              to={`/product/${product._id}`}
+            >
+              <ProductCard product={product} />
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default SearchResults;
+
+
+
+====================admin add products=====================================
+
+import React, { useState } from "react";
+import API from "../../services/api";
+import { toast } from "react-toastify";
+
+function AddProduct() {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    price: "",
+    stock: "",
+    category: "",
+    image: [],
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      console.log(formData);
+
+      const token = localStorage.getItem("token");
+
+      const response = await API.post(
+        "/product/add",
+        {
+          ...formData,
+          image: [formData.image],
+        },
+        {
+          headers: {
+            "auth-token": token,
+          },
+        },
+      );
+
+      toast.success("Product added Successfully");
+
+      console.log(response.data);
+
+      setFormData({
+        title: "",
+        description: "",
+        price: "",
+        stock: "",
+        category: "",
+        image: "",
+      });
+    } catch (error) {
+      console.log(error.response?.data);
+      toast.error("Failed to Add Product");
+    }
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto p-6 pt-25 md:pt-40">
+      <h1 className="text-3xl font-bold mb-6">Add Product</h1>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          name="title"
+          placeholder="Product Title"
+          value={formData.title}
+          onChange={handleChange}
+          className="w-full border p-3 rounded"
+        />
+
+        <textarea
+          name="description"
+          placeholder="Description"
+          value={formData.description}
+          onChange={handleChange}
+          className="w-full border p-3 rounded"
+        />
+
+        <input
+          type="number"
+          name="price"
+          placeholder="Price"
+          value={formData.price}
+          onChange={handleChange}
+          className="w-full border p-3 rounded"
+        />
+
+        <input
+          type="number"
+          name="stock"
+          placeholder="Stock"
+          value={formData.stock}
+          onChange={handleChange}
+          className="w-full border p-3 rounded"
+        />
+
+        <input
+          type="text"
+          name="category"
+          placeholder="Category"
+          value={formData.category}
+          onChange={handleChange}
+          className="w-full border p-3 rounded"
+        />
+
+        <input
+          type="file"
+          multiple
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              images: Array.from(e.target.files),
+            })
+          }
+          className="w-full border p-3 rounded"
+        />
+
+        <button type="submit" className="bg-black text-white px-6 py-3 rounded">
+          Add Product
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default AddProduct;
+
