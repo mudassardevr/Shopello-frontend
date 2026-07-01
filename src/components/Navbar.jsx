@@ -185,17 +185,17 @@ function Navbar() {
                   className="hover:cursor-pointer"
                 ></lord-icon>
               </Link>
-                <Link
-            to="/profile"
-            onClick={() => setIsOpen(false)}
-            className="block p-3 border-b"
-          >
-              <lord-icon
-                src="/profile.json"
-                trigger="hover"
-                style={{ width: "30px", height: "30px" }}
-                className="md:flex hidden hover:cursor-pointer"
-              ></lord-icon></Link>
+              <Link
+                to="/profile"
+                onClick={() => setIsOpen(false)}
+              >
+                <lord-icon
+                  src="/profile.json"
+                  trigger="hover"
+                  style={{ width: "30px", height: "30px" }}
+                  className="md:flex hidden hover:cursor-pointer"
+                ></lord-icon>
+              </Link>
             </div>
           </div>
         </nav>
@@ -314,7 +314,6 @@ function Navbar() {
           <Link
             to="/profile"
             onClick={() => setIsOpen(false)}
-            className="block p-3 border-b"
           >
             <lord-icon
               src="/profile.json"
