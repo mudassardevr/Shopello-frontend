@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../services/api";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   User,
@@ -11,6 +12,7 @@ import {
   ShoppingBag,
   Heart,
 } from "lucide-react";
+
 
 function Profile() {
   const [user, setUser] = useState(null);
