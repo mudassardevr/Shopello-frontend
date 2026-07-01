@@ -349,7 +349,7 @@ function ProductDetails() {
           <div className="fixed bottom-0 left-0 w-full bg-white border-t p-4 flex gap-3 md:hidden z-50">
             <button
               onClick={addToCart}
-              className="flex-1 bg-black text-white py-3 rounded-full"
+              className="flex-1 bg-black text-white py-3 rounded-full hover:cursor-pointer"
             >
               Add To Cart
             </button>
