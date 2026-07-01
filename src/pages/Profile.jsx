@@ -8,10 +8,14 @@ import {
   MapPin,
   Calendar,
   ShieldCheck,
+  ShoppingBag,
+  Heart,
 } from "lucide-react";
 
 function Profile() {
   const [user, setUser] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getProfile = async () => {
@@ -33,8 +37,50 @@ function Profile() {
     }
   };
 
+  const getOrders = async() => {
+    try {
+      
+    
+    const token = localStorage.getItem("token");
+
+    const { data } = await API.get("/order", {
+      headers:{
+        "auth-token" : token,
+      }
+    });
+
+    setOrders(data.orders || [])
+
+    } catch (error) {
+       console.error(error);
+    }
+
+  }
+
+  const getWishlist = async() => {
+    try {
+      
+    const token = localStorage.getItem("token")
+
+    const { data } = API.get("/wishlist", {
+      headers:{
+        "auth-token" : token
+      }
+    })
+
+    setWishlist(data.wishlist || [])
+
+    } catch (error) {
+      console.error(error);
+      
+    }
+
+  }
+
   useEffect(() => {
     getProfile();
+    getOrders();
+    getWishlist();
   }, []);
 
   if (loading) {
