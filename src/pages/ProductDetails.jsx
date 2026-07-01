@@ -354,7 +354,7 @@ function ProductDetails() {
               Add To Cart
             </button>
 
-            <button onClick={()=> buyNow()} className="flex-1 bg-orange-500 text-white py-3 rounded-full">
+            <button onClick={()=> buyNow()} className="flex-1 bg-orange-500 text-white py-3 rounded-full hover:cursor-pointer">
               Buy Now
             </button>
           </div>
