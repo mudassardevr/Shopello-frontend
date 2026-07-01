@@ -19,10 +19,14 @@ function CategoryPage() {
         const response = await API.get(
           `/product/category/${category}`
         );
+
+         console.log("Category:", category);
+console.log("Products:", products);
         
      
 
         setProducts(response.data.products);
+       
       } catch (error) {
         console.log(error);
       } finally {
