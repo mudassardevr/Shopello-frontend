@@ -185,12 +185,17 @@ function Navbar() {
                   className="hover:cursor-pointer"
                 ></lord-icon>
               </Link>
+                <Link
+            to="/profile"
+            onClick={() => setIsOpen(false)}
+            className="block p-3 border-b"
+          >
               <lord-icon
                 src="/profile.json"
                 trigger="hover"
                 style={{ width: "30px", height: "30px" }}
                 className="md:flex hidden hover:cursor-pointer"
-              ></lord-icon>
+              ></lord-icon></Link>
             </div>
           </div>
         </nav>
@@ -306,12 +311,18 @@ function Navbar() {
 
         <div className="flex-icenter gap-2 p-4 border-b border-gray-300 cursor-pointer hover:bg-gray-100">
           {/* <MdOutlinePerson className="h-7.5 w-7.5" /> */}
-          <lord-icon
-            src="/profile.json"
-            trigger="hover"
-            style={{ width: "30px", height: "30px" }}
-            className="hover:cursor-pointer"
-          ></lord-icon>
+          <Link
+            to="/profile"
+            onClick={() => setIsOpen(false)}
+            className="block p-3 border-b"
+          >
+            <lord-icon
+              src="/profile.json"
+              trigger="hover"
+              style={{ width: "30px", height: "30px" }}
+              className="hover:cursor-pointer"
+            ></lord-icon>
+          </Link>
           {token ? (
             <button
               className="bg-blue-700 text-white bg-brand box-border border border-transparent rounded-sm hover:cursor-pointer hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-2 py-2 focus:outline-none"
