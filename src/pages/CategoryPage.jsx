@@ -20,11 +20,8 @@ function CategoryPage() {
           `/product/category/${category}`
         );
 
-         console.log("Category:", category);
-console.log("Products:", products);
-        
-     
-
+         
+      
         setProducts(response.data.products);
        
       } catch (error) {
