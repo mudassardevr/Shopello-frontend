@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import ProductDetails from "./pages/ProductDetails";
@@ -29,12 +30,12 @@ import ProductList from "./pages/admin/ProductList";
 import EditProducts from "./pages/admin/EditProducts";
 import Orders from "./pages/admin/Orders";
 
+
 function App() {
+  const location = useLocation();
 
-  const location = useLocation()
-
-  const hideLayout = location.pathname === "/login" || location.pathname === "/register"; 
-
+  const hideLayout =
+    location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <>
@@ -110,10 +111,18 @@ function App() {
             </AdminRoute>
           }
         />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       {/* <Footer /> */}
-      
+
       {!hideLayout && <Footer />}
 
       <ToastContainer position="top-right" autoClose={3000} />
