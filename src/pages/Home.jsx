@@ -42,7 +42,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
 
   //for category products
-  const mobileProducts = products.filter((item) => item.category === "mobile");
+  const mobileProducts = products.filter((item) => item.category === "Mobile");
 
   const tvProducts = products.filter((item) => item.category === "TV");
 
