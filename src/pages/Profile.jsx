@@ -13,7 +13,6 @@ import {
   Heart,
 } from "lucide-react";
 
-
 function Profile() {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
@@ -70,6 +69,10 @@ function Profile() {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     getProfile();
