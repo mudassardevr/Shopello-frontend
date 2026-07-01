@@ -47,26 +47,24 @@ function ProductDetails() {
 
   // wishlist cheching products
   const checkWishlist = async () => {
-  try {
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
 
-    if (!token) return;
+      if (!token) return;
 
-    const { data } = await API.get("/wishlist", {
-      headers: {
-        "auth-token": token,
-      },
-    });
+      const { data } = await API.get("/wishlist", {
+        headers: {
+          "auth-token": token,
+        },
+      });
 
-    const exists = data.wishlist.some(
-      (item) => item.product._id === id
-    );
+      const exists = data.wishlist.some((item) => item.product._id === id);
 
-    setIsWishlisted(exists);
-  } catch (error) {
-    console.log(error);
-  }
-};
+      setIsWishlisted(exists);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getProduct();
@@ -119,9 +117,13 @@ function ProductDetails() {
           },
         },
       );
-      console.log("success", token);
+
+      toast.success("Added to Cart 🛒");
+      return true;
     } catch (error) {
       console.log(error);
+      toast.error("Failed to add to cart");
+      return false;
     }
   };
 
@@ -164,7 +166,13 @@ function ProductDetails() {
     }
   };
 
-  
+  const buyNow = async() => {
+    const added = await addToCart();
+
+    if(added){
+      navigate("/cart")
+    }
+  }
 
   return (
     <>
@@ -281,7 +289,8 @@ function ProductDetails() {
                   Add To Cart
                 </button>
 
-                <button className="flex-1 bg-orange-500 text-white py-3 rounded-full hover:cursor-pointer">
+                <button onClick={() => buyNow()}
+                 className="flex-1 bg-orange-500 text-white py-3 rounded-full hover:cursor-pointer">
                   Buy Now
                 </button>
               </div>
