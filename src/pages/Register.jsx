@@ -292,7 +292,7 @@ function Register() {
                   />
                 </div>
                 {errors.email && (
-                  <p className="mt-2 text-sm text-red-500">{errors.name}</p>
+                  <p className="mt-2 text-sm text-red-500">{errors.email}</p>
                 )}
               </div>
 
@@ -325,7 +325,7 @@ function Register() {
                 </div>
 
                 {errors.password && (
-                  <p className="mt-2 text-sm text-red-500">{errors.name}</p>
+                  <p className="mt-2 text-sm text-red-500">{errors.password}</p>
                 )}
               </div>
 
