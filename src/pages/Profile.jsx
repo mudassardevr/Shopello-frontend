@@ -23,11 +23,7 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
 
-      const { data } = await API.get("/auth/profile", {
-        headers: {
-          "auth-token": token,
-        },
-      });
+      const { data } = await API.get("/auth/profile");
 
       setUser(data.user);
     } catch (error) {
@@ -42,11 +38,7 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
 
-      const { data } = await API.get("/order", {
-        headers: {
-          "auth-token": token,
-        },
-      });
+      const { data } = await API.get("/order");
 
       setOrders(data.orders || []);
     } catch (error) {
@@ -58,11 +50,7 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
 
-      const { data } = API.get("/wishlist", {
-        headers: {
-          "auth-token": token,
-        },
-      });
+      const { data } = await API.get("/wishlist");
 
       setWishlist(data.wishlist || []);
     } catch (error) {
@@ -75,6 +63,14 @@ function Profile() {
   }, []);
 
   useEffect(() => {
+
+    const token = localStorage.getItem("token");
+
+    if(!token){
+      setLoading(false)
+      return;
+    }
+
     getProfile();
     getOrders();
     getWishlist();
@@ -86,6 +82,16 @@ function Profile() {
         Loading Profile...
       </div>
     );
+  }
+
+  if(!user){
+     return (
+    <div className="pt-28 text-center">
+      <h2 className="text-2xl font-semibold">
+        Please login to view your profile.
+      </h2>
+    </div>
+  );
   }
 
   return (
