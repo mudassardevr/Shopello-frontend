@@ -21,8 +21,16 @@ function Register() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [credentails, setCredentails] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errors, setErrors] = useState({
     name: "",
     email: "",
     password: "",
@@ -34,79 +42,82 @@ function Register() {
       ...credentails,
       [e.target.name]: e.target.value,
     });
+
+    setErrors({
+      ...errors,
+      [e.target.name]: "",
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const newErrors = {};
+
+    if (!credentails.name.trim()) {
+      newErrors.name = "Full name is required.";
+    }
+
+    if (!credentails.email.trim()) {
+      newErrors.email = "Email is required.";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (credentails.email && !emailRegex.test(credentails.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!credentails.password.trim()) {
+      newErrors.password = "Password is required.";
+    }
+
+    if (credentails.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters.";
+    }
+
+    if (!credentails.confirmPassword.trim()) {
+      newErrors.confirmPassword = "Please confirm your password.";
+    }
+
+    if (
+      credentails.password &&
+      credentails.confirmPassword &&
+      credentails.password !== credentails.confirmPassword
+    ) {
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     try {
+      setLoading(true);
+
       const response = await API.post("/auth/register", credentails);
 
       //save token
       localStorage.setItem("token", response.data.token);
 
-      console.log("Registration successfully");
-
       navigate("/");
     } catch (error) {
-      console.log(error);
+      if (error.response?.status === 409) {
+        setErrors((prev) => ({
+          ...prev,
+          email: error.response.data.message,
+        }));
+      } else {
+        console.error(error);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
-      {/* <div className="flex justify-center  mt-30 md:mt-40">
-
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md border p-6 rounded-xl"
-      >
-
-        <h1 className="text-3xl font-bold mb-6">
-          Register
-        </h1>
-
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleOnChange}
-          className="w-full border p-3 mb-4 rounded-lg"
-        />
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleOnChange}
-          className="w-full border p-3 mb-4 rounded-lg"
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleOnChange}
-          className="w-full border p-3 mb-4 rounded-lg"
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          onChange={handleOnChange}
-          className="w-full border p-3 mb-4 rounded-lg"
-        />
-
-        <button
-          className="w-full bg-black text-white py-3 rounded-lg"
-        >
-          Register
-        </button>
-
-      </form>
-
-    </div> */}
-
       <div className="min-h-screen flex">
         {/* left side */}
         <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-linear-to-br from-[#f8f9ff] via-[#eef2ff] to-[#e4e9ff] px-16 py-14 ">
@@ -255,6 +266,9 @@ function Register() {
                     required
                   />
                 </div>
+                {errors.name && (
+                  <p className="mt-2 text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
 
               {/* Email */}
@@ -277,6 +291,9 @@ function Register() {
                     required
                   />
                 </div>
+                {errors.email && (
+                  <p className="mt-2 text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
 
               {/* Password */}
@@ -306,6 +323,10 @@ function Register() {
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
                 </div>
+
+                {errors.password && (
+                  <p className="mt-2 text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
 
               {/* Confirm Password */}
@@ -338,6 +359,12 @@ function Register() {
                       <Eye size={20} />
                     )}
                   </button>
+
+                  {errors.confirmPassword && (
+                    <p className="mt-2 text-sm text-red-500">
+                      {errors.confirmPassword}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -355,9 +382,16 @@ function Register() {
 
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full rounded-xl bg-indigo-600 py-3 font-semibold text-white transition duration-300 hover:bg-indigo-700 hover:shadow-lg"
               >
-                Create Account
+                {loading ? (
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                  </div>
+                ) : (
+                  "Create Account"
+                )}
               </button>
             </form>
 

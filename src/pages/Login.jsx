@@ -18,6 +18,7 @@ import {
 function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [credentails, setCredentails] = useState({
     email: "",
@@ -60,6 +61,7 @@ function Login() {
     }
 
     try {
+      setLoading(true);
       const response = await API.post("/auth/login", credentails);
 
       //save token
@@ -68,7 +70,6 @@ function Login() {
 
       navigate("/");
     } catch (error) {
-
       if (error.response?.status === 404) {
         setErrors({
           email: error.response.data.message,
@@ -79,7 +80,12 @@ function Login() {
           email: "",
           password: error.response.data.message,
         });
+      } else {
+        console.error(error);
+        alert("Something went wrong. Please try again.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -228,13 +234,11 @@ function Login() {
                     value={credentails.email}
                     onChange={onChange}
                     className="ml-3 w-full border-none bg-transparent outline-none"
-                   
                   />
-
                 </div>
-                  {errors.email && (
-                    <p className="mt-2 text-sm text-red-500">{errors.email}</p>
-                  )}
+                {errors.email && (
+                  <p className="mt-2 text-sm text-red-500">{errors.email}</p>
+                )}
               </div>
 
               {/* Password */}
@@ -254,9 +258,7 @@ function Login() {
                     value={credentails.password}
                     onChange={onChange}
                     className="ml-3 w-full border-none bg-transparent outline-none"
-                    
                   />
-
 
                   <button
                     type="button"
@@ -266,11 +268,9 @@ function Login() {
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
                 </div>
-                  {errors.password && (
-                    <p className="mt-2 text-sm text-red-500">
-                      {errors.password}
-                    </p>
-                  )}
+                {errors.password && (
+                  <p className="mt-2 text-sm text-red-500">{errors.password}</p>
+                )}
               </div>
 
               {/* Forgot Password */}
@@ -288,9 +288,16 @@ function Login() {
 
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full rounded-xl bg-indigo-600 py-3 font-semibold text-white transition-all duration-300 hover:bg-indigo-700 hover:shadow-lg hover:cursor-pointer"
               >
-                Sign In
+                {loading ? (
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                  </div>
+                ) : (
+                  "Sign In"
+                )}
               </button>
             </form>
 
