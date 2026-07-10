@@ -360,12 +360,12 @@ function Register() {
                     )}
                   </button>
 
-                  {errors.confirmPassword && (
+                </div>
+                 {errors.confirmPassword && (
                     <p className="mt-2 text-sm text-red-500">
                       {errors.confirmPassword}
                     </p>
                   )}
-                </div>
               </div>
 
               <div className="mb-6 lg:hidden">
