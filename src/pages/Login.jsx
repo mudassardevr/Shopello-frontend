@@ -24,17 +24,40 @@ function Login() {
     password: "",
   });
 
-  
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
   const onChange = (e) => {
     setCredentails({
       ...credentails,
       [e.target.name]: e.target.value,
     });
+
+    setErrors({
+      ...errors,
+      [e.target.name]: "",
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const newErrors = {};
+
+    if (!credentails.email.trim()) {
+      newErrors.email = "Email is required";
+    }
+
+    if (!credentails.password.trim()) {
+      newErrors.password = "Password is required";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
     try {
       const response = await API.post("/auth/login", credentails);
@@ -42,53 +65,26 @@ function Login() {
       //save token
       localStorage.setItem("token", response.data.token);
       console.log("success login", response.data.token);
-     
 
       navigate("/");
     } catch (error) {
-      console.log(error);
+
+      if (error.response?.status === 404) {
+        setErrors({
+          email: error.response.data.message,
+          password: "",
+        });
+      } else if (error.response?.status === 401) {
+        setErrors({
+          email: "",
+          password: error.response.data.message,
+        });
+      }
     }
   };
 
   return (
     <>
-      {/* <div className="flex justify-center mt-30 md:mt-40">
-
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md border p-6 rounded-xl"
-      >
-
-        <h1 className="text-3xl font-bold mb-6">
-          Login
-        </h1>
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={onChange}
-          className="w-full border p-3 mb-4 rounded-lg"
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={onChange}
-          className="w-full border p-3 mb-4 rounded-lg"
-        />
-
-        <button
-          className="w-full bg-black text-white py-3 rounded-lg"
-        >
-          Login
-        </button>
-
-      </form>
-
-    </div> */}
-
       <div className="min-h-screen flex">
         {/* left side */}
         <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-linear-to-br from-[#f8f9ff] via-[#eef2ff] to-[#e4e9ff] px-16 py-14 ">
@@ -102,7 +98,8 @@ function Login() {
               {/* Logo */}
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 shadow-lg">
-                  <ShoppingBag className="text-white" size={24} />
+                  {/* <ShoppingBag className="text-white" size={24} /> */}
+                  <img src="/shopello_icon_appicon.svg" alt="shopello Logo" />
                 </div>
 
                 <h2 className="text-2xl font-bold text-slate-900">Shopello</h2>
@@ -231,9 +228,13 @@ function Login() {
                     value={credentails.email}
                     onChange={onChange}
                     className="ml-3 w-full border-none bg-transparent outline-none"
-                    required
+                   
                   />
+
                 </div>
+                  {errors.email && (
+                    <p className="mt-2 text-sm text-red-500">{errors.email}</p>
+                  )}
               </div>
 
               {/* Password */}
@@ -253,8 +254,9 @@ function Login() {
                     value={credentails.password}
                     onChange={onChange}
                     className="ml-3 w-full border-none bg-transparent outline-none"
-                    required
+                    
                   />
+
 
                   <button
                     type="button"
@@ -264,6 +266,11 @@ function Login() {
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
                 </div>
+                  {errors.password && (
+                    <p className="mt-2 text-sm text-red-500">
+                      {errors.password}
+                    </p>
+                  )}
               </div>
 
               {/* Forgot Password */}
@@ -285,8 +292,6 @@ function Login() {
               >
                 Sign In
               </button>
-
-  
             </form>
 
             {/* Divider */}
@@ -312,14 +317,14 @@ function Login() {
 
             {/* continue shopping */}
             <div className="mb-6 lg:hidden mt-5">
-                <button
-                  onClick={() => navigate("/")}
-                  className="flex items-center gap-2 text-indigo-600 font-semibold"
-                >
-                  <Home size={18} />
-                  Continue Shopping
-                </button>
-              </div>
+              <button
+                onClick={() => navigate("/")}
+                className="flex items-center gap-2 text-indigo-600 font-semibold"
+              >
+                <Home size={18} />
+                Continue Shopping
+              </button>
+            </div>
 
             {/* Register */}
 
