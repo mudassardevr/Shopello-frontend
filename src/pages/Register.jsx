@@ -113,7 +113,7 @@ function Register() {
         }));
       } else {
         console.error(error);
-        toast.error("Something went wrong. Please try again.");
+        toast.error("Please try again.",error);
       }
     } finally {
       setLoading(false);
