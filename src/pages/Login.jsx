@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
@@ -66,8 +67,7 @@ function Login() {
 
       //save token
       localStorage.setItem("token", response.data.token);
-      console.log("success login", response.data.token);
-
+      toast.success("Welcome back! Login successful.");
       navigate("/");
     } catch (error) {
       if (error.response?.status === 404) {
@@ -82,7 +82,7 @@ function Login() {
         });
       } else {
         console.error(error);
-        alert("Something went wrong. Please try again.");
+        toast.error("Something went wrong. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -184,7 +184,6 @@ function Login() {
               </div>
 
               {/* Bottom Illustration */}
-
               <div className="mt-10 flex justify-end">
                 <img
                   src="/shopping-bag2.png"
@@ -224,7 +223,11 @@ function Login() {
                   Email
                 </label>
 
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 py-3 transition focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-200">
+                <div
+                  className={`flex items-center rounded-xl border px-4 py-3 transition
+                     ${ errors.email ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100"
+                       : "border-gray-300 focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-200"
+                       } `}>
                   <Mail size={20} className="text-gray-400" />
 
                   <input
@@ -248,7 +251,11 @@ function Login() {
                   Password
                 </label>
 
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 py-3 transition focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-200">
+                <div   className={`flex items-center rounded-xl border px-4 py-3 transition
+                 ${ errors.password
+                 ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100"
+                  : "border-gray-300 focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-200"
+                 } `}>
                   <Lock size={20} className="text-gray-400" />
 
                   <input

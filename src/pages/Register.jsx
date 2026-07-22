@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
@@ -98,8 +99,10 @@ function Register() {
 
       const response = await API.post("/auth/register", credentails);
 
-      //save token
+      // Save token
       localStorage.setItem("token", response.data.token);
+
+      toast.success("Account created successfully!");
 
       navigate("/");
     } catch (error) {
@@ -110,6 +113,7 @@ function Register() {
         }));
       } else {
         console.error(error);
+        toast.error("Something went wrong. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -253,7 +257,10 @@ function Register() {
                   Full Name
                 </label>
 
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 py-3 focus-within:ring-2 focus-within:ring-indigo-200 focus-within:border-indigo-600">
+                <div  className={`flex items-center rounded-xl border px-4 py-3
+                 ${errors.name
+                 ? "border-red-500 focus-within:ring-2 focus-within:ring-red-100"
+                : "border-gray-300 focus-within:ring-2 focus-within:ring-indigo-200 focus-within:border-indigo-600"}`}>
                   <User size={20} className="text-gray-400" />
 
                   <input
@@ -278,7 +285,12 @@ function Register() {
                   Email
                 </label>
 
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 py-3 focus-within:ring-2 focus-within:ring-indigo-200 focus-within:border-indigo-600">
+                <div  className={`flex items-center rounded-xl border px-4 py-3 transition 
+                ${errors.email 
+                 ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100"
+                 : "border-gray-300 focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-200"
+                  }`}
+                  >
                   <Mail size={20} className="text-gray-400" />
 
                   <input
@@ -303,7 +315,11 @@ function Register() {
                   Password
                 </label>
 
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 py-3 focus-within:ring-2 focus-within:ring-indigo-200 focus-within:border-indigo-600">
+                <div className={`flex items-center rounded-xl border px-4 py-3 
+                ${ errors.password
+                  ? "border-red-500 focus-within:ring-2 focus-within:ring-red-100"
+                  : "border-gray-300 focus-within:ring-2 focus-within:ring-indigo-200 focus-within:border-indigo-600"}`}
+                  >
                   <Lock size={20} className="text-gray-400" />
 
                   <input
@@ -336,7 +352,10 @@ function Register() {
                   Confirm Password
                 </label>
 
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 py-3 focus-within:ring-2 focus-within:ring-indigo-200 focus-within:border-indigo-600">
+                <div className={`flex items-center rounded-xl border px-4 py-3
+                 ${errors.confirmPassword
+                   ? "border-red-500 focus-within:ring-2 focus-within:ring-red-100"
+                  : "border-gray-300 focus-within:ring-2 focus-within:ring-indigo-200 focus-within:border-indigo-600"}`}>
                   <Lock size={20} className="text-gray-400" />
 
                   <input
@@ -359,13 +378,12 @@ function Register() {
                       <Eye size={20} />
                     )}
                   </button>
-
                 </div>
-                 {errors.confirmPassword && (
-                    <p className="mt-2 text-sm text-red-500">
-                      {errors.confirmPassword}
-                    </p>
-                  )}
+                {errors.confirmPassword && (
+                  <p className="mt-2 text-sm text-red-500">
+                    {errors.confirmPassword}
+                  </p>
+                )}
               </div>
 
               <div className="mb-6 lg:hidden">
