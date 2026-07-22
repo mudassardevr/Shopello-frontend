@@ -177,7 +177,7 @@ function Navbar() {
                 ></lord-icon>
               </Link>
               <Link to="/cart">
-                {/* <MdOutlineShoppingBag className="h-7.5 w-7.5" /> */}
+
                 <lord-icon
                   src="/cart_logo.json"
                   trigger="hover"

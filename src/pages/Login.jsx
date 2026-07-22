@@ -82,7 +82,7 @@ function Login() {
         });
       } else {
         console.error(error);
-        toast.error("Please try again.",error);
+        toast.error("Something went wrong. Please try again.");
       }
     } finally {
       setLoading(false);
