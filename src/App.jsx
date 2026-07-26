@@ -14,6 +14,8 @@ import Footer from "./components/Footer";
 
 //layout
 import Navbar from "./components/Navbar";
+import SideBar from "./components/SideBar";
+
 //protected route
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
@@ -29,6 +31,8 @@ import AddProduct from "./pages/admin/AddProducts";
 import ProductList from "./pages/admin/ProductList";
 import EditProducts from "./pages/admin/EditProducts";
 import Orders from "./pages/admin/Orders";
+import { Import } from "lucide-react";
+
 
 
 function App() {
@@ -41,6 +45,7 @@ function App() {
     <>
       {/* <Navbar /> */}
       {!hideLayout && <Navbar />}
+      <SideBar/>
 
       <Routes>
         <Route path="/" element={<Home />} />

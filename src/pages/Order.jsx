@@ -37,7 +37,7 @@ function Order() {
 
   return (
     <>
-    <div className="p-6 pt-20 md:pt-35">
+    <div className="p-6 pt-20 md:pt-35 md:ml-25">
 
       <h1 className="text-3xl font-bold mb-6">
         My Orders

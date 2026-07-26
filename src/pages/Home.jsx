@@ -71,9 +71,9 @@ function Home() {
 
   return (
     <>
-      <div className="pt-20.5 md:pt-25">
-        <div className="bg-white border-b border-gray-200">
-          <div className="max-w-center">
+      <div className="pt-20.5 md:pt-15 bg-white lg:ml-24">
+        <div className="px-3 sm:px-5 lg:px-7 py-4 md:py-6">
+          <div className="relative overflow-hidden rounded-2xl md:rounded-[28px] bg-white shadow-[0_10px_35px_rgba(0,0,0,0.10)] border border-gray-100">
             <Swiper
               modules={[Autoplay, Pagination]}
               autoplay={{
@@ -87,11 +87,13 @@ function Home() {
             >
               {banners.map((banner) => (
                 <SwiperSlide key={banner.id}>
+                  <div className="w-full bg-gray-50">
                   <img
                     src={banner.image}
                     alt={`Banner ${banner.id}`}
-                    className="w-full h-70 object-cover md:h-100 md:object-contain"
+                    className="block w-full h-55 sm:h-70 md:h-87.5 lg:h-105 object-cover"
                   />
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>

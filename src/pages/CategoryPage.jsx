@@ -37,7 +37,7 @@ function CategoryPage() {
   }, [category]);
 
   return (
-    <div className="max-w-center mx-auto p-6 pt-25 md:pt-40">
+    <div className="max-w-center mx-auto p-6 pt-25 md:pt-40 md:ml-25">
       <h1 className="text-2xl md:text-3xl font-bold mb-6">
         {category}
       </h1>

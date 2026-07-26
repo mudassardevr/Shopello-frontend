@@ -14,35 +14,7 @@ import { FaXmark } from "react-icons/fa6";
 import { MdOutlinePerson } from "react-icons/md";
 import { Menu, X } from "lucide-react";
 
-// import Lottie from "lottie-react";
-// import hamburgurLogo from "../assets/hamburger_logo.json";
 
-const menuItems = [
-  "Mac",
-  "iPad",
-  "iPhone",
-  "Watch",
-  "Music",
-  "TV & Home",
-  "Accessories",
-];
-const menuItems2 = [
-  "iPad",
-  "Mac",
-  "Watch",
-  "pads",
-  "Pcs",
-  "shoes",
-  "Pens",
-  "accessories",
-  "belts",
-  "Caps",
-  "Screen",
-  "Brush",
-  "pencil",
-  "Tables",
-  "Rocks",
-];
 
 function Navbar() {
   let isAdmin = false;
@@ -114,17 +86,15 @@ function Navbar() {
     navigate(`/search?q=${search}`);
   };
 
-  //   console.log(hamburgurLogo);
-  //   console.log(Lottie);
-  // console.log(typeof Lottie);
+
 
   return (
     <>
       <header
-        className={`bg-[#b5d4f4] fixed top-0 left-0 w-full z-50 shadow transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"} `}
+        className={`bg-[#b5d4f4] fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"} `}
       >
-        <nav className="bg-[#85b7eb]">
-          <div className="flex-icenter justify-between p-4  max-w-center">
+        <nav className="bg-white">
+          <div className="flex-icenter justify-between p-4 md:p-0 max-w-center">
             {/* HAMBURGER FOR MOBLIE */}
             <button className="md:hidden" onClick={() => setIsOpen(true)}>
               {/* <Menu size={28} className="hover:cursor-pointer" /> */}
@@ -199,20 +169,6 @@ function Navbar() {
             </div>
           </div>
         </nav>
-
-        {/* MENU LIST FOR PC */}
-        {/* <div className="max-w-center hidden md:block">
-          <ul className="flex items-center justify-evenly text-sm p-2 gap-2">
-            {menuItems2.map((menuItems2) => (
-              <li
-                key={menuItems2}
-                className="text-gray-600 hover:cursor-pointer hover:underline"
-              >
-                {menuItems2}
-              </li>
-            ))}
-          </ul>
-        </div> */}
       </header>
 
       {/* MENU HAMBURGER list for Mobile { */}
@@ -266,18 +222,7 @@ function Navbar() {
           />
         </div>
 
-        {/* Menu */}
-        {/* <ul>
-          {menuItems.map((item) => (
-            <li
-              key={item}
-              onClick={() => navigate(`/category/${item}`)}
-              className="p-2 border-b border-gray-300 cursor-pointer hover:bg-gray-100"
-            >
-              {item}
-            </li>
-          ))}
-        </ul> */}
+       
         {/* Admin menu */}
         <div>
           {isAdmin && (

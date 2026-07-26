@@ -74,7 +74,7 @@ function Cart() {
 
   return (
     <>
-      <div className="p-6 pt-25 md:pt-40">
+      <div className="p-6 pt-25 md:pt-40 md:ml-25">
         <h1 className="text-3xl font-bold mb-6">My Cart</h1>
 
         {cartItems.length === 0 ? (
