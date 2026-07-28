@@ -86,7 +86,7 @@ function Navbar() {
     navigate(`/search?q=${search}`);
   };
 
-
+ 
 
   return (
     <>
@@ -94,7 +94,7 @@ function Navbar() {
         className={`bg-[#b5d4f4] fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"} `}
       >
         <nav className="bg-white">
-          <div className="flex-icenter justify-between p-4 md:p-0 max-w-center">
+          <div className="flex-icenter justify-between px-4 md:px-6 max-w-7xl mx-auto">
             {/* HAMBURGER FOR MOBLIE */}
             <button className="md:hidden" onClick={() => setIsOpen(true)}>
               {/* <Menu size={28} className="hover:cursor-pointer" /> */}
@@ -108,7 +108,7 @@ function Navbar() {
             </button>
 
             {/* LOGO */}
-            <Link to="/">
+            <Link to="/" className="shrink-0">
               <img
                 className="h-12.5"
                 src="/shopello_horizontal.svg"
@@ -120,7 +120,7 @@ function Navbar() {
             </Link>
 
             {/* SEARCH BAR for pc */}
-            <div className="relative p-4 w-3xl md:flex hidden">
+            <div className="relative p-4 flex-1 max-w-3xl md:flex hidden">
               <FiSearch className="h-4 w-4 absolute left-7 top-1/2 -translate-y-1/2 text-gray-600" />
               <input
                 type="text"
@@ -229,7 +229,7 @@ function Navbar() {
             <>
               <Link
                 to="/admin"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => setIsOpen(false)}
                 className="block p-3 border-b"
               >
                 Dashboard
@@ -237,7 +237,7 @@ function Navbar() {
 
               <Link
                 to="/admin/products"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => setIsOpen(false)}
                 className="block p-3 border-b"
               >
                 Products
