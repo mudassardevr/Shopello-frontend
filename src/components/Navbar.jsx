@@ -91,14 +91,12 @@ function Navbar() {
   return (
     <>
       <header
-        className={`bg-[#b5d4f4] fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"} `}
+        className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"} `}
       >
         <nav className="bg-white md:ml-25">
           <div className="flex-icenter justify-between px-4 md:px-6 max-w-7xl mx-auto">
             {/* HAMBURGER FOR MOBLIE */}
             <button className="md:hidden" onClick={() => setIsOpen(true)}>
-              {/* <Menu size={28} className="hover:cursor-pointer" /> */}
-              {/* <Lottie animationData={hamburgurLogo} loop={false} className="h-7.5 w-7.5" /> */}
               <lord-icon
                 src="/menu_logo.json"
                 trigger="hover"
