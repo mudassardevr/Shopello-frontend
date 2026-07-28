@@ -127,9 +127,9 @@ function App() {
         />
       </Routes>
 
-      {/* <Footer /> */}
 
        </main>
+      {/* <Footer /> */}
       {!hideLayout && <Footer />}
 
       <ToastContainer position="top-right" autoClose={3000} />

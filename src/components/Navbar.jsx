@@ -91,9 +91,9 @@ function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"} `}
+        className={`py-2 fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"} `}
       >
-        <nav className="bg-white md:ml-25">
+        <nav className="bg-white md:ml-23">
           <div className="flex-icenter justify-between px-4 md:px-6 max-w-7xl mx-auto">
             {/* HAMBURGER FOR MOBLIE */}
             <button className="md:hidden" onClick={() => setIsOpen(true)}>
