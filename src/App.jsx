@@ -47,6 +47,9 @@ function App() {
       {!hideLayout && <Navbar />}
       <SideBar/>
 
+      <main className="md:ml-25">
+
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -129,6 +132,7 @@ function App() {
       {/* <Footer /> */}
 
       {!hideLayout && <Footer />}
+       </main>
 
       <ToastContainer position="top-right" autoClose={3000} />
     </>
