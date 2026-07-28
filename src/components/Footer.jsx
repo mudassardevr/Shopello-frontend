@@ -20,52 +20,10 @@ function Footer() {
 
   return (
     <>
-      {/* <footer className="bg-[#212121] p-10">
-        <div className="flex gap-15 ">
-          <div>
-            <h2 className="text-gray-500 text-xl mb-2">Shop</h2>
-            <ul className="text-white text-sm font-bold">
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-gray-500 text-xl mb-2">Shop</h2>
-            <ul className="text-white text-sm font-bold">
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-gray-500 text-xl mb-2">Shop</h2>
-            <ul className="text-white text-sm font-bold">
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-gray-500 text-xl mb-2">Shop</h2>
-            <ul className="text-white text-sm font-bold">
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-              <li>Contact us</li>
-            </ul>
-          </div>
-        </div>
-      </footer> */}
+      
 
        <footer className="bg-[#212121] text-white mt-10">
+        <div className="md:ml-25">
       {/* TOP SECTION */}
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-sm">
@@ -216,6 +174,7 @@ function Footer() {
             className="h-5"
           />
         </div>
+      </div>
       </div>
     </footer>
     </>
