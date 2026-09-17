@@ -18,7 +18,7 @@ function SideBar() {
 
   const menuItems = [
     { icon: Home, label: "Home", path: "/" },
-    { icon: Grid2X2, label: "Categories", path: "/category/:category" },
+    { icon: Grid2X2, label: "Categories", path: "/category/Mobile" },
     { icon: Heart, label: "Wishlist" , path: "/wishlist" },
     { icon: ShoppingCart, label: "Orders", path: "/orders" },
     { icon: Headphones, label: "Support" },

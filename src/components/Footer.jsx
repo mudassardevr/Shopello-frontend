@@ -92,7 +92,7 @@ function Footer() {
             </h3>
 
             <p className="text-sm leading-6">
-              Flipkart Internet Private Limited,
+              Shopello Internet Private Limited,
               Buildings Alyssa, Begonia &
               Clove Embassy Tech Village,
               Outer Ring Road,
@@ -120,7 +120,7 @@ function Footer() {
             </h3>
 
             <p className="text-sm leading-6">
-              Flipkart Internet Private Limited,
+              Shopello Internet Private Limited,
               Buildings Alyssa, Begonia &
               Clove Embassy Tech Village,
               Outer Ring Road,
